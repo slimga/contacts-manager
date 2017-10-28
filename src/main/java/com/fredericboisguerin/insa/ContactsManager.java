@@ -18,12 +18,34 @@ public class ContactsManager {
     public void printAllContacts() {
         Iterator <Contact> iterator=this.contacts.iterator();
         Contact contact=new Contact();
+        String contact2Print=null;
         while(iterator.hasNext()){
-            System.out.println("Name"+ iterator.next().name);
+            contact=iterator.next();
+            if (contact.name != null) {
+                contact2Print = "contact: " + contact.name;
+                if (contact.email != null)
+                    contact2Print = contact2Print + ", " + contact.email;
+                if (contact.phoneNumber != null)
+                    contact2Print = contact2Print + ", " + contact.phoneNumber;
+            }
+            System.out.println(contact2Print);
         }
     }
 
     public void searchContactByName(String name) {
-
+    /** Pour changer, utilisation d'un simple indice et non pas d'iterateur **/
+        Contact contact=new Contact();
+        String contact2Print=null;
+        for (int i=0;i<this.contacts.size();i++) {
+        //System.out.println(i);
+            contact = this.contacts.get(i);
+            if (contact.name.contains(name)){
+                    contact2Print = contact.name;
+                if (contact.email != null) contact2Print = contact2Print + ", " + contact.email;
+                if (contact.phoneNumber != null)
+                    contact2Print = contact2Print + ", " + contact.phoneNumber;
+                System.out.println(contact2Print);
+            }
+        }
     }
 }
